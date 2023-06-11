@@ -1,35 +1,17 @@
-pipeline {
-    agent any
-    environment {
-        AWS_REGION = "eu-central-1"
+pipeline{
+    agent{
+        label "qwerty"
     }
-    stages {
-        stage('logging to ecr') {
-            steps {
-                sh "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 307854153830.dkr.ecr.${AWS_REGION}.amazonaws.com"
+        stages{
+            stage ('building sonar'){
+                steps {
+                    withSonarQubeEnv('sonarqube_java_calculator'){
+                        sh "mvn sonar:sonar"
+                    }
+                    
+                }
             }
         }
-        stage('build image') {
-            steps {
-                sh "docker build -t myrepo ."
-            }
-        }
-        stage('tag image') {
-            steps {
-                sh "docker tag myrepo:latest 307854153830.dkr.ecr.${AWS_REGION}.amazonaws.com/myrepo:latest"
-            }
-        }
-        stage('push to repo') {
-            steps {
-                sh "docker push 307854153830.dkr.ecr.eu-central-1.amazonaws.com/myrepo:latest"
-            }
-        }
-        stage('deploy on cluster') {
-            steps {
-                sh 'kubectl apply -f pod.yml'
-                sh 'kubectl apply -f ser.yml'
-            }
-        }
-    }
 }
-
+                
+         
