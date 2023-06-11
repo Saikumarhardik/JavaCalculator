@@ -8,7 +8,7 @@ pipeline{
                     sh "mvn clean package"
                 }
             }
-        }
+        
             stage ('building sonar'){
                 steps {
                     withSonarQubeEnv('sonarqube_java_calculator'){
