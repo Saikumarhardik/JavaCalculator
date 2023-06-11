@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label "qwerty"
+        label "qwertyy"
     }
         stages{
             stage ('building sonar'){
