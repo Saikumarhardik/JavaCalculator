@@ -12,6 +12,8 @@ pipeline{
         stage ("creating the container"){
             steps{
                 sh "docker container run -dt --name httpdcont httpd:1"
+            }
+        }
     }
    
 }
