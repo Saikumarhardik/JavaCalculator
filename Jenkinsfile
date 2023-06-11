@@ -5,7 +5,7 @@ pipeline{
     stages{
         stage ("building docker"){
             steps{
-                sh "docker container run -dt --name Saikumar httpd"
+                sh "docker image  build -t  java:1 ."
             }
         }
     }
