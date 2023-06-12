@@ -5,13 +5,13 @@ pipeline{
     stages{
         stage ("building docker"){
             steps{
-                sh "docker image  build -t  httpd:1 ."
+                sh "docker image  build -t  httpd:2 ."
                 
             }
         }
         stage ("creating the container"){
             steps{
-                sh "docker container run -dt --name httpdcont httpd:1"
+                sh "docker container run -dt --name newcont  httpd:2"
             }
         }
         stage ("testing with sonarqube"){
