@@ -14,6 +14,11 @@ pipeline{
                 sh "docker container run -dt --name httpdcont httpd:1"
             }
         }
+        stage ("testing with sonarqube"){
+            steps{
+                sh "mvn sonar: sonar"
+            }
+        }
     }
    
 }
