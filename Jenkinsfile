@@ -17,7 +17,7 @@ pipeline{
         }
         stage ("quality gates"){
             steps{
-                sh "echo hi"
+                sh "waitForQualityGate abortPipeline: false, credentialsId: 'sonarid'"
             }
         }
     }
