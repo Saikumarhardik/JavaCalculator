@@ -20,6 +20,11 @@ pipeline{
                 waitForQualityGate abortPipeline: true
             }
         }
+        stage("sample"){
+            steps{
+                sh "echo hi"
+            }
+        }
     }
    
 }
