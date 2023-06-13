@@ -15,6 +15,11 @@ pipeline{
                 }
             }
         }
+        stage ("quality gates"){
+            steps{
+                sh "echo hi"
+            }
+        }
     }
    
 }
