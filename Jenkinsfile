@@ -1,23 +1,17 @@
 pipeline{
     agent{
-        label "qwertyy"
+        label "abcd"
     }
     stages{
-        stage ("building docker"){
+        stage ("packagin the application"){
             steps{
-                sh "docker image  build -t  httpd:2 ."
-                
-            }
-        }
-        stage ("creating the container"){
-            steps{
-                sh "docker container run -dt --name newcont  httpd:2"
+                sh "mvn clean package"
             }
         }
         stage ("testing with sonarqube"){
             steps{
                 withSonarQubeEnv("sonarsonar"){
-                sh "mvn sonar: sonar"
+                sh "mvn sonar:sonar"
                 }
             }
         }
